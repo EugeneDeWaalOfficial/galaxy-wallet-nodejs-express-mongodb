@@ -34,8 +34,19 @@ const { Wallet } = require('../models');
   return wallet;
 };
 
+/**
+ * Transfer from user
+ * @param {Object} walletBody
+ * @returns {Promise<Wallet>}
+ */
+ const walletTransfer = async (walletBody) => {  
+  const wallet = await Wallet.create(walletBody);
+  return wallet;
+};
+
 module.exports = {
   walletHistory,
   walletDeposit,  
-  walletWithdrawal
+  walletWithdrawal,
+  walletTransfer
 };

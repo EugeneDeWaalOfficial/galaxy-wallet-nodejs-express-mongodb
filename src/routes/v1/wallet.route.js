@@ -18,9 +18,9 @@ router
   .route('/withdrawal')
   .post(auth('transact'), validate(walletValidation.walletWithdrawal), walletController.walletWithdrawal);
 
-// router
-//   .route('/transfer/:userId')
-//   .post(auth('transact'), validate(walletValidation.walletTransfer), walletController.walletTransfer);
+router
+  .route('/transfer')
+  .post(auth('transact'), validate(walletValidation.walletTransfer), walletController.walletTransfer);
 
 
 module.exports = router;
