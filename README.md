@@ -1,2 +1,2 @@
-# galaxy-wallet-rest-api-nestjs-mongodb-react
+# galaxy-wallet-nodejs-express-mongodb
 This is the official Galaxy Wallet built in NodeJS, Express and MongoDB. Dockerized.
