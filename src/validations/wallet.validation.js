@@ -11,20 +11,20 @@ const walletHistory = {
 
 const walletDeposit = {
   body: Joi.object().keys({
-    amount: Joi.string().required(),
+    amount: Joi.number().required(),
   }),
 };
 
 const walletWithdrawal = {
   body: Joi.object().keys({
-    amount: Joi.string().required(),
+    amount: Joi.number().required(),
   }),
 };
 
 const walletTransfer = {
   body: Joi.object().keys({
     userId: Joi.string().required(),
-    amount: Joi.string().required(),
+    amount: Joi.number().required(),
   }),
 };
 

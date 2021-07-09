@@ -29,11 +29,17 @@ const walletTransfer = catchAsync(async (req, res) => {
   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
   }else{
-    let wallet = await walletService.walletTransfer(req.body);
-    req.body.userId = req.user._id;
-    req.body.amount = req.body.amount*-1;
-    wallet = await walletService.walletWithdrawal(req.body);
-    res.status(httpStatus.CREATED).send(wallet);
+    //get sum value of 
+    let walletValue = await walletService.getWalletValue(req.user._id)
+    if(walletValue[0].amount>req.body.amount){
+      let wallet = await walletService.walletTransfer(req.body);
+      req.body.userId = req.user._id;
+      req.body.amount = req.body.amount*-1;
+      wallet = await walletService.walletWithdrawal(req.body);
+      res.status(httpStatus.CREATED).send(wallet);
+    }else{
+      throw new ApiError(httpStatus.NOT_ACCEPTABLE, 'Not enough funds');
+    }    
   }  
 });
 

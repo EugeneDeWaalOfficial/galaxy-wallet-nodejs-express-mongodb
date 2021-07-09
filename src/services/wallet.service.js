@@ -1,6 +1,16 @@
 const { Wallet } = require('../models');
 
 /**
+ * Get user by id
+ * @param {ObjectId} id
+ * @returns {Promise<Wallet>}
+ */
+ const getWalletValue = async (id) => {
+  const walletResponse = await Wallet.aggregate([{ $match: { userId: id.toString() } },{ $group: { _id: null, amount: { $sum: "$amount" }}}]);
+  return walletResponse;
+};
+
+/**
  * Query for users
  * @param {Object} filter - Mongo filter
  * @param {Object} options - Query options
@@ -48,5 +58,6 @@ module.exports = {
   walletHistory,
   walletDeposit,  
   walletWithdrawal,
-  walletTransfer
+  walletTransfer,
+  getWalletValue
 };
