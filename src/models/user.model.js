@@ -44,6 +44,10 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    walletTotal: {
+      type: Number,
+      required: false
+    },
   },
   {
     timestamps: true,
